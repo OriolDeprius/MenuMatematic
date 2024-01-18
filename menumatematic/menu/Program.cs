@@ -6,20 +6,20 @@
         {
             int opcio, a, b;
 
-           string opcions = " *************************** \n" +
-                            " *      MENU MATEMATIC     * \n" +
-                            " *************************** \n" +
-                            " * 1. MAXIM                * \n" +
-                            " * 2. MCD                  * \n" +
-                            " * 3. MCM                  * \n" +
-                            " * 4. FACTORIAL            * \n" +
-                            " * 5. COMBINATORI          * \n" +
-                            " * 6. DIVISOR MAJOR        * \n" +
-                            " * 7. ES PRIMER            * \n" +
-                            " * 8. N PRIMER PRIMERS     * \n" +
-                            " *************************** \n" +
-                            " * 0. SORTIR               * \n" +
-                            " *************************** \n";
+            string opcions = " *************************** \n" +
+                             " *      MENU MATEMATIC     * \n" +
+                             " *************************** \n" +
+                             " * 1. MAXIM                * \n" +
+                             " * 2. MCD                  * \n" +
+                             " * 3. MCM                  * \n" +
+                             " * 4. FACTORIAL            * \n" +
+                             " * 5. COMBINATORI          * \n" +
+                             " * 6. DIVISOR MAJOR        * \n" +
+                             " * 7. ES PRIMER            * \n" +
+                             " * 8. N PRIMER PRIMERS     * \n" +
+                             " *************************** \n" +
+                             " * 0. SORTIR               * \n" +
+                             " *************************** \n";
 
             do
             {
@@ -34,9 +34,9 @@
                         Console.WriteLine("Has decidit tancar el programa.");
                         break;
                     case 1:
-                        
+
                         a = Convert.ToInt32(ValorIntroduit());
-                        
+
                         b = Convert.ToInt32(ValorIntroduit());
 
                         Console.Clear();
@@ -46,7 +46,11 @@
                         CompteEnrere();
                         break;
                     case 2:
-                        Mcd();
+                        a = Convert.ToInt32(ValorIntroduit());
+                        b = Convert.ToInt32(ValorIntroduit());
+                        Console.Clear();
+                        Console.WriteLine($"\nEl MCD de {a} i {b} es {Mcd(a, b)}.");
+                        CompteEnrere();
                         break;
                     case 3:
                         Mcm();
@@ -76,7 +80,6 @@
                 Thread.Sleep(1000);
             }
         }
-
         static void CompteEnrere()
         {
             for (int i = 5; i > 0; i--)
@@ -96,18 +99,19 @@
         {
             if (a < b)
             {
-                (a,b)=(b,a);
+                (a, b) = (b, a);
             }
             return a;
         }
-        static void Mcd()
+        static int Mcd(int num1, int num2)
         {
-            int num1, num2;
-
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            int mcd = int.MinValue;
+            for (int i = 1; i <= num1; i++)
+            {
+                if (num1 % i == 0 && num2 % i == 0 && i > mcd)
+                    mcd = i;
+            }
+            return mcd;
         }
         static void Mcm()
         {
