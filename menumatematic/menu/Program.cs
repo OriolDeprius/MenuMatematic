@@ -34,15 +34,10 @@
                         Console.WriteLine("Has decidit tancar el programa.");
                         break;
                     case 1:
-
                         a = Convert.ToInt32(ValorIntroduit());
-
                         b = Convert.ToInt32(ValorIntroduit());
-
                         Console.Clear();
-
                         Console.WriteLine($"\nEl valor més gran es {Maxim(a, b)}");
-
                         CompteEnrere();
                         break;
                     case 2:
