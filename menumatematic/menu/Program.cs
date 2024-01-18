@@ -48,13 +48,24 @@
                         CompteEnrere();
                         break;
                     case 3:
-                        Mcm();
+                        a = Convert.ToInt32(ValorIntroduit());
+                        b = Convert.ToInt32(ValorIntroduit());
+                        Console.Clear();
+                        Console.WriteLine($"\nEl MCM de {a} i {b} es {Mcm(a, b)}");
+                        CompteEnrere();
                         break;
                     case 4:
-                        Factorial();
+                        a = Convert.ToInt32(ValorIntroduit());
+                        Console.Clear();
+                        Console.WriteLine($"El factorial de {a} es {Factorial(a)}");
+                        CompteEnrere();
                         break;
                     case 5:
-                        Combinatori();
+                        a = Convert.ToInt32(ValorIntroduit());
+                        b = Convert.ToInt32(ValorIntroduit());
+                        Console.Clear();
+                        Console.WriteLine($"El Combinatori de {a} i {b} es {Combinatori(a, b)}");
+                        CompteEnrere();
                         break;
                     case 6:
                         DivisorMajor();
@@ -108,34 +119,43 @@
             }
             return mcd;
         }
-        static void Mcm()
+        static int Mcm(int num1, int num2)
         {
-            int num1, num2;
-
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
-
-
+            int mcm = int.MaxValue;
+            bool trobat = false;
+            Maxim(num1, num2);
+            for (int i = num1; !trobat; i++)
+            {
+                if (i % num2 == 0 && i % num1 == 0)
+                {
+                    trobat = true;
+                    mcm = i;
+                }
+            }
+            return mcm;
         }
-        static void Factorial()
+        static int Factorial(int num)
         {
-            int num1, num2;
-
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            int acum = 1;
+            for (int i = 1; i <= num; i++)
+            {
+                acum = acum * i;
+            }
+            return acum;
         }
-        static void Combinatori()
+        static double Combinatori(int n, int m)
         {
-            int num1, num2;
+            double calcul, factN = 1, factM = 1, nMenysM, factNMenysM = 1;
 
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            for (int i = 2; i <= n; i++)
+                factN = factN * i;
+            for (int i = 2; i <= m; i++)
+                factM = factM * i;
+            nMenysM = n - m;
+            for (int i = 2; i <= nMenysM; i++)
+                factNMenysM = factNMenysM * i;
+            calcul = factN / (factM * factNMenysM);
+            return calcul;
         }
         static void DivisorMajor()
         {
