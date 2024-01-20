@@ -1,7 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace menu
+﻿namespace menu
 {
     internal class Program
     {
@@ -60,7 +57,7 @@ namespace menu
                     case 4:
                         a = Convert.ToInt32(ValorIntroduit());
                         Console.Clear();
-                        Console.WriteLine($"El factorial de {a} es {Factorial(a)}");
+                        Console.WriteLine($"\nEl factorial de {a} es {Factorial(a)}");
                         CompteEnrere();
                         break;
                     case 5:
@@ -71,9 +68,10 @@ namespace menu
                         CompteEnrere();
                         break;
                     case 6:
-                        a= Convert.ToInt32(ValorIntroduit());
+                        a = Convert.ToInt32(ValorIntroduit());
                         Console.Clear();
-                        Console.WriteLine($"/n El divisor major de {a} és {DivisorMajor(a)}.");
+                        Console.WriteLine($"\nEl divisor major de {a} és {DivisorMajor(a)}.");
+                        CompteEnrere();
                         break;
                     case 7:
                         a = Convert.ToInt32(ValorIntroduit());
@@ -87,9 +85,9 @@ namespace menu
                         CompteEnrere();
                         break;
                     case 8:
-                        a=Convert.ToInt32(ValorIntroduit()); 
+                        a = Convert.ToInt32(ValorIntroduit());
                         Console.Clear();
-                        Console.WriteLine($"/ El numero {a} te {NPrimersPrimers(a)}.");
+                        Console.WriteLine($"Els {a} primers numeros primers son --> {NPrimersPrimers(a)}");
                         CompteEnrere();
                         break;
                 }
@@ -193,49 +191,34 @@ namespace menu
             int cont = 0;
             bool primer;
 
-            for (int i =1; i<=a; i++)
+            for (int i = 1; i <= a; i++)
             {
-                if (a%i==0)
+                if (a % i == 0)
                     cont++;
             }
             if (cont == 2 || cont == 1)
                 primer = true;
-            else 
+            else
                 primer = false;
-            return primer;          
+            return primer;
 
         }
-        static int NPrimersPrimers(int quantiat)
+        static string NPrimersPrimers(int quantiat)
         {
             int cont = 0;
-            int numero = 2;
+            int numero = 1;
+            string Nprimers = ""; 
 
             while (cont < quantiat)
             {
                 if (EsPrimer(numero))
                 {
-                    Console.Write(numero + " ");
+                    Nprimers = Nprimers + numero + " ";
                     cont++;
                 }
-
                 numero++;
             }
-
-            return cont;
+            return Nprimers;
         }
-
-        static bool Primer (int num)
-        {
-            for (int i = 2; i <= Math.Sqrt(num); i++)
-            {
-                if (num % i == 0)
-                {
-                    return false;
-                }
-            }
-
-            return num > 1;
-        }
-
     }
 }
