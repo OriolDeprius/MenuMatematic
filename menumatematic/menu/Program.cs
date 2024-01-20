@@ -1,4 +1,7 @@
-﻿namespace menu
+﻿using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace menu
 {
     internal class Program
     {
@@ -68,13 +71,26 @@
                         CompteEnrere();
                         break;
                     case 6:
-                        DivisorMajor();
+                        a= Convert.ToInt32(ValorIntroduit());
+                        Console.Clear();
+                        Console.WriteLine($"/n El divisor major de {a} és {DivisorMajor(a)}.");
                         break;
                     case 7:
-                        EsPrimer();
+                        a = Convert.ToInt32(ValorIntroduit());
+                        Console.Clear();
+                        if (EsPrimer(a))
+                        {
+                            Console.WriteLine("es primer");
+                        }
+                        else
+                            Console.WriteLine("no es primer");
+                        CompteEnrere();
                         break;
                     case 8:
-                        NprimersPrimers();
+                        a=Convert.ToInt32(ValorIntroduit()); 
+                        Console.Clear();
+                        Console.WriteLine($"/ El numero {a} te {NPrimersPrimers(a)}.");
+                        CompteEnrere();
                         break;
                 }
             }
@@ -157,32 +173,69 @@
             calcul = factN / (factM * factNMenysM);
             return calcul;
         }
-        static void DivisorMajor()
+        static int DivisorMajor(int numero)
         {
-            int num1, num2;
 
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            int DivisorMajor = 1;
+
+            for (int i = 2; i <= numero / 2; i++)
+            {
+                if (numero % i == 0)
+                {
+                    DivisorMajor = i;
+                }
+            }
+
+            return DivisorMajor;
         }
-        static void EsPrimer()
+        static bool EsPrimer(int a)
         {
-            int num1, num2;
+            int cont = 0;
+            bool primer;
 
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            for (int i =1; i<=a; i++)
+            {
+                if (a%i==0)
+                    cont++;
+            }
+            if (cont == 2 || cont == 1)
+                primer = true;
+            else 
+                primer = false;
+            return primer;          
+
         }
-        static void NprimersPrimers()
+        static int NPrimersPrimers(int quantiat)
         {
-            int num1, num2;
+            int cont = 0;
+            int numero = 2;
 
-            Console.Write("Dona un numero --> ");
-            num1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Dona un altre numero --> ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            while (cont < quantiat)
+            {
+                if (EsPrimer(numero))
+                {
+                    Console.Write(numero + " ");
+                    cont++;
+                }
+
+                numero++;
+            }
+
+            return cont;
         }
+
+        static bool Primer (int num)
+        {
+            for (int i = 2; i <= Math.Sqrt(num); i++)
+            {
+                if (num % i == 0)
+                {
+                    return false;
+                }
+            }
+
+            return num > 1;
+        }
+
     }
 }
